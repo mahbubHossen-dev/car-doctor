@@ -35,7 +35,12 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-
+                <Link href={'/register'}>
+                    <button className='btn'>Register</button>
+                </Link>
+                <Link href={'/login'}>
+                    <button className='btn'>Login</button>
+                </Link>
                 <a className="btn">Appointment</a>
             </div>
         </div>
