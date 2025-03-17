@@ -14,11 +14,11 @@ const Services = async () => {
           <figure className="px-10 pt-10">
             <Image
               src={d.img}
-              width={300}
-              height={150}
+              width={500}
+              height={100}
               alt="Shoes"
-              className="rounded-xl" />
-          </figure>
+              className="rounded-xl w-full h-auto object-cover" />
+          </figure> 
           <div className="card-body items-center text-center">
             <h2 className="card-title">{d.title}</h2>
             <p>{d.price}</p>
