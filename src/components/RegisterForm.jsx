@@ -1,17 +1,31 @@
 'use client'
-
+import { signIn } from "next-auth/react";
 import registerUser from '@/app/action/registerUser';
-import React from 'react';
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+
 
 const RegisterForm = () => {
-
+    const router = useRouter()
     const handleRegister =async (e) => {
+
         e.preventDefault()
         const form = e.target
         const name = form.name.value
         const email = form.email.value
         const password = form.password.value
         const result = await registerUser({name, email, password})
+        toast('Creating ...')
+        if(result.insertedId){
+            const result = await signIn('credentials', { email, password, redirect: false});
+            if(result.ok){
+                toast.success('Register Success!')
+                router.push('/')
+            }
+            
+        }
+
+        // await signIn('credentials', { email, password, redirect: false});
         console.log(result)
     }
 

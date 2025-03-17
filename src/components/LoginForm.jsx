@@ -2,6 +2,7 @@
 import React from 'react';
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const LoginForm = () => {
     const router = useRouter();
@@ -11,18 +12,24 @@ const LoginForm = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-
+        toast('Submitting ...')
         try {
             const result = await signIn('credentials', { email, password, redirect: false});
+            if(result.ok){
+                router.push('/');
+                toast.success('Login Success')
+            }else{
+                toast.error('Login Failed')
+            }
             console.log(result)
-            router.push('/');
+            // router.push('/');
             // if (result?.error) {
             //     console.log("Login failed:", result.error);
             // } else {
             //     router.push('/'); // সফল হলে হোমপেজে পাঠাবে
             // }
         } catch (error) {
-            console.log(error);
+            toast.error('Login Failed')
         }
     };
 
