@@ -1,6 +1,7 @@
 // import dbConnect, { collectionNamesObj } from '@/DB/dbConnect'
 // import { ObjectId } from 'mongodb'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default async function ServiceDetails({ params }) {
@@ -35,6 +36,9 @@ export default async function ServiceDetails({ params }) {
                 </div>
                 <div className='bg-gray-300 p-6 col-span-1'>
                     <h2>Services</h2>
+                    <Link href={`/checkout/${singleService._id}`}>
+                        <h1 className='bg-orange-400 py-2 px-3'>Checkout</h1>
+                    </Link>
                     <ul>
                     {
                         singleService?.facility.map((f, idx) => <li className='p-3 bg-white my-2' key={idx}>{f.name}</li>)
@@ -43,10 +47,6 @@ export default async function ServiceDetails({ params }) {
                 </div>
             </div>
 
-            <div>
-                
-                
-            </div>
         </div>
     )
 }
