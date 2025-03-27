@@ -1,15 +1,16 @@
-import dbConnect from '@/DB/dbConnect'
-import { ObjectId } from 'mongodb'
+// import dbConnect, { collectionNamesObj } from '@/DB/dbConnect'
+// import { ObjectId } from 'mongodb'
 import Image from 'next/image'
 import React from 'react'
 
 export default async function ServiceDetails({ params }) {
-    const { id } = await params
-
-    const singleService = await dbConnect('services').findOne({ _id: new ObjectId(id) })
-
-    // console.log(data)
-    console.log(singleService.facility)
+    const id = await params
+    const res = await fetch(`http://localhost:3000/api/service/${id.id}`)
+    const singleService = await res.json()
+    // // const servicesCollection = dbConnect(collectionNamesObj.servicesCollection)
+    // // const singleService = await servicesCollection.findOne({ _id: new ObjectId(id) })
+    // // console.log(id)
+    console.log(singleService)
     return (
         <div className='w-11/12 mx-auto'>
             {/* {params} */}

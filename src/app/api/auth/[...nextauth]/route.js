@@ -1,7 +1,8 @@
 import loginUser from "@/app/action/loginUser";
+import dbConnect, { collectionNamesObj } from "@/DB/dbConnect";
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import GoogleProvider from "next-auth/providers/google";
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -17,30 +18,49 @@ export const authOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        console.log(credentials)
+        // console.log(credentials)
         // Add logic here to look up the user from the credentials supplied
         const user = await loginUser(credentials)
-        console.log(user)
+        // console.log(user)
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
           return user
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null
-  
+
           // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       }
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
     })
   ],
-  
+
   pages: {
-    signIn: '/login'
+    signIn: "/login", // যদি কাস্টম সাইন-ইন পেজ থাকে
+  },
+
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      // console.log({ user, account, profile, email, credentials })
+      if (account) {
+        const { providerAccountId, provider } = account
+        const { email, image, name } = user
+        const userCollection = dbConnect(collectionNamesObj.userCollection)
+        const isExistUser = await userCollection.findOne({ providerAccountId })
+        if (!isExistUser) {
+          const userData = { providerAccountId, provider, email, image, name }
+          await userCollection.insertOne(userData)
+        }
+      }
+      return true
+    },
   }
 
 }
-
-
 
 const handler = NextAuth(authOptions)
 

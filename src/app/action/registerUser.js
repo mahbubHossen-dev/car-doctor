@@ -1,10 +1,10 @@
 'use server'
 import bcrypt from 'bcrypt'
-import dbConnect, { collectionNamesObj } from '@/DB/dbConnect';
+import dbConnect from '@/DB/dbConnect';
 
 const registerUser = async (payload) => {
     console.log(payload)
-    const userCollection = dbConnect(collectionNamesObj.userCollection)
+    const userCollection = dbConnect('users')
     const email = payload.email
     const isExist = await userCollection.findOne({ email })
 

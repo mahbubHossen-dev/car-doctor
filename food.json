@@ -1,0 +1,53 @@
+[
+    {
+      "id": "660b12a4f1c23e5a6d8a8b01",
+      "restaurant_id": "660b12a4f1c23e5a6d8a8901",
+      "foodName": "Cheese Burger",
+      "description": "Delicious beef burger with extra cheese.",
+      "price": 5.99,
+      "category": "Fast Food",
+      "image": "https://example.com/images/cheese_burger.jpg",
+      "is_available": true,
+      "created_at": "2024-03-20T12:00:00Z",
+      "owner_email": "mhbabu2002@gmail.com"
+      
+    },
+
+    
+    {
+      "id": "660b12a4f1c23e5a6d8a8b02",
+      "restaurant_id": "660b12a4f1c23e5a6d8a8902",
+      "foodName": "Pepperoni Pizza",
+      "description": "Classic Italian pizza with spicy pepperoni.",
+      "price": 8.99,
+      "category": "Italian",
+      "image": "https://example.com/images/pepperoni_pizza.jpg",
+      "is_available": true,
+      "created_at": "2024-03-21T14:30:00Z",
+      "owner_email": "mhbabu2002@gmail.com"
+    },
+    {
+      "id": "660b12a4f1c23e5a6d8a8b03",
+      "restaurant_id": "660b12a4f1c23e5a6d8a8903",
+      "foodName": "Grilled Chicken Salad",
+      "description": "Healthy grilled chicken with fresh veggies.",
+      "price": 6.49,
+      "category": "Salad",
+      "image": "https://example.com/images/grilled_chicken_salad.jpg",
+      "is_available": true,
+      "created_at": "2024-03-22T10:15:00Z",
+      "owner_email": "mhbabu2002@gmail.com"
+    },
+    {
+      "id": "660b12a4f1c23e5a6d8a8b04",
+      "restaurant_id": "660b12a4f1c23e5a6d8a8904",
+      "foodName": "Chocolate Cake",
+      "description": "Rich and moist chocolate cake slice.",
+      "price": 4.99,
+      "category": "Dessert",
+      "image": "https://example.com/images/chocolate_cake.jpg",
+      "is_available": false,
+      "created_at": "2024-03-23T18:45:00Z",
+      "owner_email": "mhbabu2002@gmail.com"
+    }
+  ]
